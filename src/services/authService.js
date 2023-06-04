@@ -23,4 +23,13 @@ export default {
       });
     return res;
   },
+
+  register: async (email, username) => {
+    const res = await Axios.post(`${config.APIURL}/auth/register`, {
+      email,
+      username,
+    });
+
+    return res;
+  },
 };

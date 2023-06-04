@@ -31,7 +31,6 @@ export default class ServersList extends React.Component {
               <th>Gra</th>
               <th>Nazwa serwera</th>
               <th>Adres IP</th>
-              <th>Port</th>
               <th>Liczba Graczy</th>
               <th>Max Graczy</th>
               <th>Kraj</th>
@@ -47,11 +46,21 @@ export default class ServersList extends React.Component {
                       <td>
                         <a href={`/server/${server.id}`}>{server.name}</a>
                       </td>
-                      <td>{server.ip}</td>
-                      <td>{server.port}</td>
+                      <td>
+                        {server.ip}:{server.port}
+                      </td>
                       <td>{server.serverStatuses[0].players}</td>
                       <td>{server.serverStatuses[0].maxPlayers}</td>
-                      <td>{server.country_code}</td>
+                      <td>
+                        {server.country_code ? (
+                          <img
+                            src={`https://flagsapi.com/${server.country_code}/flat/32.png`}
+                            title={server.country_code}
+                          />
+                        ) : (
+                          "N/A"
+                        )}
+                      </td>
                     </tr>
                   );
                 })

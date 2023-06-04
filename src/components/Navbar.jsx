@@ -6,6 +6,13 @@ import React, { useContext } from "react";
 import { UserContext } from "../providers/userProvider";
 import { Button, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faServer,
+  faPlus,
+  faRightToBracket,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 
 const NavbarMenu = (props) => {
   const user = useContext(UserContext);
@@ -14,30 +21,18 @@ const NavbarMenu = (props) => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Lista serwerów</Navbar.Brand>
+        <Navbar.Brand href="/">
+          <FontAwesomeIcon icon={faServer} /> ServHub - Lista serwerów
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
+          <Nav className="me-auto"></Nav>
           <Nav>
             {user.user ? (
               <Nav.Link eventKey={1}>
                 <Dropdown>
                   <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    {user.user.username}
+                    <FontAwesomeIcon icon={faUser} /> {user.user.username}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
@@ -50,12 +45,16 @@ const NavbarMenu = (props) => {
               </Nav.Link>
             ) : (
               <Nav.Link eventKey={2} href="/login">
-                <Button variant="success">Zaloguj</Button>
+                <Button variant="success">
+                  <FontAwesomeIcon icon={faRightToBracket} /> Zaloguj się
+                </Button>
               </Nav.Link>
             )}
 
             <Nav.Link eventKey={2} href="/add">
-              <Button>Dodaj serwer</Button>
+              <Button>
+                <FontAwesomeIcon icon={faPlus} /> Dodaj serwer
+              </Button>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

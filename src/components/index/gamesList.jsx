@@ -1,6 +1,8 @@
 import React from "react";
 import { Card, Container, Button } from "react-bootstrap";
 import gameService from "../../services/gameService";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGamepad } from "@fortawesome/free-solid-svg-icons";
 
 export default class GameList extends React.Component {
   constructor(props) {
@@ -23,7 +25,9 @@ export default class GameList extends React.Component {
     }
     return (
       <Container>
-        <h2>Lista dostępnych gier</h2>
+        <h2>
+          <FontAwesomeIcon icon={faGamepad} /> Lista dostępnych gier
+        </h2>
         <Card>
           <Card.Body>
             {this.state.games

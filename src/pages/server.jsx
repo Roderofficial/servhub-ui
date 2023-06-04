@@ -5,6 +5,9 @@ import { Button, Card, Table, Container, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import withRouter from "../providers/withRouter";
 import serverService from "../services/serverService";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import TakeOwnership from "../components/server/takeOwnership";
 
 class ServerPage extends React.Component {
   static contextType = UserContext;
@@ -55,7 +58,12 @@ class ServerPage extends React.Component {
             </tr>
             <tr>
               <td>Nazwa użytkownika</td>
-              <td>{this.state.server.owner.username}</td>
+              <td>
+                {this.state.server.owner.verificatied ? (
+                  <FontAwesomeIcon icon={faCircleCheck} />
+                ) : null}{" "}
+                {this.state.server.owner.username}
+              </td>
             </tr>
           </tbody>
         </Table>
@@ -117,7 +125,9 @@ class ServerPage extends React.Component {
                 </tr>
                 <tr>
                   <td>Nazwa gry</td>
-                  <td>{server.game.title}</td>
+                  <td>
+                    <a href={`/games/${server.game.id}`}>{server.game.title}</a>
+                  </td>
                 </tr>
               </tbody>
             </Table>
@@ -128,7 +138,7 @@ class ServerPage extends React.Component {
             ) : (
               <>
                 <div>Serwer nie posiada właściela</div>
-                <Button>Przejmij dowodzenie</Button>
+                <TakeOwnership serverId={server.id} />
               </>
             )}
 
