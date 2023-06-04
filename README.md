@@ -31,16 +31,16 @@ Konfiguracja znajduje się w pliku `config.js` w głównym katalogu projektu.
 
 ## Screenshots
 
-Strona główna
+Strona główna\
 ![App Screenshot](https://i.ibb.co/N7Rs0CH/image.png)
 
-Informacje o serwerze
+Informacje o serwerze\
 ![App Screenshot](https://i.ibb.co/W67zQLY/image.png)
 
-Dodawanie serwera do listy
+Dodawanie serwera do listy\
 ![App Screenshot](https://i.ibb.co/hdHxbFG/image.png)
 
-Logowanie dwuetapowe z wykorzystaniem jednorazowego kodu dostępu
+Logowanie dwuetapowe z wykorzystaniem jednorazowego kodu dostępu\
 ![App Screenshot](https://i.ibb.co/fYPWsPh/image.png)
 
 
