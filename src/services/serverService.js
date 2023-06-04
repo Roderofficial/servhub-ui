@@ -8,6 +8,11 @@ export default {
     return res.data;
   },
 
+  getServer: async (id) => {
+    const res = await Axios.get(`${config.APIURL}/server/${id}`);
+    return res.data;
+  },
+
   addServer: async (server) => {
     const res = await Axios.post(`${config.APIURL}/server/create`, server);
     return res;

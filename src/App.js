@@ -3,7 +3,9 @@ import IndexPage from "./pages";
 import NavbarMenu from "./components/Navbar";
 import AddServer from "./pages/addServer";
 import LoginPage from "./pages/login";
-import { UserContextProvider } from "./components/providers/userProvider";
+import ServerPage from "./pages/server";
+import { UserContextProvider } from "./providers/userProvider";
+import withRouter from "./providers/withRouter";
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
             <Route path="/" element={<IndexPage />} />
             <Route path="/add" element={<AddServer />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/server/:id" element={<ServerPage />} />
           </Routes>
         </BrowserRouter>
       </UserContextProvider>

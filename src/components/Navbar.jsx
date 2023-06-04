@@ -2,10 +2,15 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import React from "react";
-import { Button } from "react-bootstrap";
+import React, { useContext } from "react";
+import { UserContext } from "../providers/userProvider";
+import { Button, Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const NavbarMenu = () => {
+const NavbarMenu = (props) => {
+  const user = useContext(UserContext);
+  console.log(user);
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -28,11 +33,27 @@ const NavbarMenu = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link eventKey={2} href="/login">
-              <Button variant="success" style={{ marginRight: "10px" }}>
-                Logowanie
-              </Button>
-            </Nav.Link>
+            {user.user ? (
+              <Nav.Link eventKey={1}>
+                <Dropdown>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    {user.user.username}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item href={`profile/${user.user.id}`}>
+                      Profil
+                    </Dropdown.Item>
+                    <Dropdown.Item href="/logout">Wyloguj</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Nav.Link>
+            ) : (
+              <Nav.Link eventKey={2} href="/login">
+                <Button variant="success">Zaloguj</Button>
+              </Nav.Link>
+            )}
+
             <Nav.Link eventKey={2} href="/add">
               <Button>Dodaj serwer</Button>
             </Nav.Link>

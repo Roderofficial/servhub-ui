@@ -1,5 +1,5 @@
 import React, { Component, createContext } from "react";
-import userService from "../../services/userService";
+import userService from "../services/userService";
 
 export const UserContext = createContext();
 export class UserContextProvider extends Component {
