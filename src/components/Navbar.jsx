@@ -14,9 +14,13 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
+const logout = () => {
+  localStorage.removeItem("token");
+  window.location.href = "/";
+};
+
 const NavbarMenu = (props) => {
   const user = useContext(UserContext);
-  console.log(user);
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -36,10 +40,7 @@ const NavbarMenu = (props) => {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href={`profile/${user.user.id}`}>
-                      Profil
-                    </Dropdown.Item>
-                    <Dropdown.Item href="/logout">Wyloguj</Dropdown.Item>
+                    <Dropdown.Item onClick={logout}>Wyloguj</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Nav.Link>

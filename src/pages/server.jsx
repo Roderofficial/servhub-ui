@@ -8,6 +8,7 @@ import serverService from "../services/serverService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import TakeOwnership from "../components/server/takeOwnership";
+import Swal from "sweetalert2";
 
 class ServerPage extends React.Component {
   static contextType = UserContext;
@@ -31,6 +32,27 @@ class ServerPage extends React.Component {
       });
   }
 
+  delete_server = () => {
+    serverService.deleteServer(this.state.server.id).then((data) => {
+      window.location.href = "/";
+    });
+  };
+
+  deleteSwal = () => {
+    Swal.fire({
+      title: "Czy na pewno chcesz usunąć serwer?",
+      text: "Nie będzie możliwości cofnięcia tej operacji!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Tak, usuń serwer!",
+      cancelButtonText: "Nie, anuluj!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete_server();
+      }
+    });
+  };
+
   owner_management = () => {
     return (
       <Card
@@ -41,7 +63,7 @@ class ServerPage extends React.Component {
           <Card.Title>Zarządzanie serwerem</Card.Title>
         </Card.Header>
         <Card.Body>
-          <Button>Usuń serwer</Button>
+          <Button onClick={this.deleteSwal}>Usuń serwer</Button>
         </Card.Body>
       </Card>
     );
@@ -73,7 +95,6 @@ class ServerPage extends React.Component {
 
   render() {
     const server = this.state.server;
-    console.log(server);
     if (this.state.loading) {
       return <div>Ładowanie...</div>;
     }
@@ -92,7 +113,6 @@ class ServerPage extends React.Component {
             </Card.Title>
           </Card.Header>
           <Card.Body>
-            {console.log(this.context.user, server.owner_id)}
             {this.context.user && this.context.user.id === server.ownerId ? (
               <this.owner_management />
             ) : null}

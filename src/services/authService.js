@@ -13,7 +13,6 @@ export default {
       code,
     })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("token", res.data.access_token);
         return true;
       })

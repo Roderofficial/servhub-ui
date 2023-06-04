@@ -15,45 +15,6 @@ export default class TakeOwnership extends React.Component {
     };
   }
 
-  requrest_ownership = async () => {
-    Swal.fire({
-      title: "Przejęcie serwera",
-      text: "Sprawdzanie statusu serwera...",
-      icon: "info",
-      showCancelButton: false,
-      showConfirmButton: false,
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-      allowEnterKey: false,
-      allowOutsideClick: false,
-      showClass: {
-        popup: "",
-        icon: "",
-      },
-      hideClass: {
-        popup: "",
-      },
-    });
-    const res = await serverService.requestOwnership(this.state.serverId);
-    if (res.status == 200) {
-      Swal.fire({
-        title: "Przejęcie serwera",
-        text: "Poprawnie przejęto serwer na własność!",
-        icon: "success",
-        showCancelButton: false,
-        showConfirmButton: true,
-      });
-    } else {
-      Swal.fire({
-        title: "Przejęcie serwera",
-        text: "Wystąpił błąd podczas przejmowania serwera na własność! Sprawdż czy nazwa serwera jest poprawna i spróbuj ponownie.",
-        icon: "error",
-        showCancelButton: false,
-        showConfirmButton: true,
-      });
-    }
-  };
-
   getOwnershipServerRequestName = async (id) => {
     const res = await serverService.getOwnershipServerRequestName(id);
     return res;
@@ -76,7 +37,42 @@ export default class TakeOwnership extends React.Component {
       cancelButtonText: "Anuluj",
     }).then((result) => {
       if (result.isConfirmed) {
-        this.requestOwnership();
+        Swal.showLoading();
+        Swal.fire({
+          title: "Przejęcie serwera",
+          text: "Sprawdzanie statusu serwera...",
+          icon: "info",
+          showCancelButton: false,
+          showConfirmButton: false,
+        });
+
+        serverService
+          .requestOwnership(this.state.serverId)
+          .then((res) => {
+            if (res == 200 || res == 204) {
+              Swal.fire({
+                title: "Przejęcie serwera",
+                text: "Serwer został przejęty pomyślnie",
+                icon: "success",
+                showCancelButton: false,
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+              }).then((result) => {
+                window.location.reload();
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            Swal.fire({
+              title: "Przejęcie serwera",
+              text: "Wystąpił błąd podczas przejmowania serwera",
+              icon: "error",
+              showCancelButton: false,
+              showConfirmButton: true,
+            });
+          });
       }
     });
   };

@@ -4,7 +4,7 @@ import config from "../config";
 export default {
   getServers: async () => {
     const res = await Axios.get(`${config.APIURL}/server`);
-    console.log(res.data);
+
     return res.data;
   },
 
@@ -39,9 +39,26 @@ export default {
   },
 
   requestOwnership: async (id) => {
-    const res = await Axios.post(`${config.APIURL}/server/take-ownership/`, {
-      serverId: id,
+    const res = await Axios.post(
+      `${config.APIURL}/server/take-ownership/`,
+      {
+        serverId: id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    return res.status;
+  },
+
+  deleteServer: async (id) => {
+    const res = await Axios.delete(`${config.APIURL}/server/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     });
-    return res;
+    return res.status;
   },
 };

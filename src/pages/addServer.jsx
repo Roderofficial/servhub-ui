@@ -23,7 +23,6 @@ export default class AddServer extends React.Component {
   }
 
   handleChange = (e) => {
-    console.log(e.target.value, e.target.name);
     this.setState({ [e.target.name]: e.target.value });
   };
 
