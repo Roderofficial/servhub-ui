@@ -33,6 +33,7 @@ export default class GameList extends React.Component {
                       key={game.id}
                       variant="primary"
                       href={`/games/${game.id}`}
+                      style={{ margin: "5px" }}
                     >
                       {game.title}
                     </Button>
