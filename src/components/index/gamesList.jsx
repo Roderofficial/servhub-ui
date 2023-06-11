@@ -26,16 +26,17 @@ export default class GameList extends React.Component {
     return (
       <Container>
         <h2>
-          <FontAwesomeIcon icon={faGamepad} /> Lista dostępnych gier
+          <FontAwesomeIcon icon={faGamepad} style={{ color: "#FF7500" }} />{" "}
+          Lista dostępnych gier
         </h2>
-        <Card>
+        <Card className="bg-dark">
           <Card.Body>
             {this.state.games
               ? this.state.games.map((game) => {
                   return (
                     <Button
                       key={game.id}
-                      variant="primary"
+                      variant="outline-warning"
                       href={`/games/${game.id}`}
                       style={{ margin: "5px" }}
                     >

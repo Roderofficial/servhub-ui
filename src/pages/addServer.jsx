@@ -67,8 +67,10 @@ export default class AddServer extends React.Component {
     return (
       <div>
         <Container>
-          <h2 style={{ marginTop: "20px" }}>Dodaj serwer</h2>
-          <Card>
+          <Card className="text-white bg-dark mt-3">
+            <Card.Header>
+              <h2 style={{ marginTop: "20px" }}>Dodaj serwer</h2>
+            </Card.Header>
             <Card.Body>
               <Form>
                 <Form.Group controlId="formBasicEmail">

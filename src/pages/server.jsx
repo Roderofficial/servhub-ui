@@ -56,8 +56,12 @@ class ServerPage extends React.Component {
   owner_management = () => {
     return (
       <Card
-        style={{ marginTop: "20px", marginBottom: "20px" }}
-        className="text-white bg-dark"
+        style={{
+          marginTop: "20px",
+          marginBottom: "20px",
+          backgroundColor: "#32475b",
+        }}
+        className="text-white"
       >
         <Card.Header>
           <Card.Title>Zarządzanie serwerem</Card.Title>
@@ -72,7 +76,7 @@ class ServerPage extends React.Component {
   owner_info = () => {
     return (
       <div>
-        <Table striped bordered hover>
+        <Table className="text-white">
           <tbody>
             <tr>
               <td>Id właściciela</td>
@@ -100,7 +104,7 @@ class ServerPage extends React.Component {
     }
     return (
       <Container>
-        <Card style={{ marginTop: "20px" }}>
+        <Card style={{ marginTop: "20px" }} className="bg-dark text-white">
           <Card.Header>
             <Card.Title>
               {server.extras?.favicon ? (
@@ -117,7 +121,7 @@ class ServerPage extends React.Component {
               <this.owner_management />
             ) : null}
             <h3>Informacje o serwerze</h3>
-            <Table striped bordered hover>
+            <Table className="text-white">
               <tbody>
                 <tr>
                   <td>Nazwa</td>
